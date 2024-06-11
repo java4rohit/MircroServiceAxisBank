@@ -1,0 +1,92 @@
+version: '3.8'
+services:
+  accounts:
+    image: dockerrohit12/accounts:s4
+    container_name: account-ms
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/mydatabase
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-mysql-net
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    depends_on:
+      - mysqldb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  loans:
+    image: dockerrohit12/loans:s4
+    container_name: loans-ms
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/mydatabase
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8090:8090"
+    networks:
+      - springboot-mysql-net
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    depends_on:
+      - mysqldb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  cards:
+    image: dockerrohit12/cards:s4
+    container_name: cards-ms
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/mydatabase
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "9000:9000"
+    networks:
+      - springboot-mysql-net
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    depends_on:
+      - mysqldb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: secure_password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-mysql-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  springboot-mysql-net:
+    external: true

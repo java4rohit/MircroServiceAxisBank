@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: cards
+  datasource:
+    url: jdbc:mysql://mysqldb:3306/microservices_udemy
+    username: sa
+    password: 1234
+#      url: jdbc:mysql://127.0.0.1:3306/microservices_udemy
+#      username: root
+#      password: root
+  quartz:
+    jdbc:
+      initialize-schema: ALWAYS
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 9000
