@@ -1,11 +1,10 @@
 server:
   port: 9000
-
 spring:
   application:
     name: "cards"
   profiles:
-    active: "qa"
+    active: "prod"
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/microservices_udemy
     username: root
@@ -22,3 +21,15 @@ spring:
     show-sql: true
   config:
     import: "optional:configserver:http://127.0.0.1:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+#------------------------Reference The Configuration----------------#
+management:
+ endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,7 @@
+//EUREAK
+
+EUREAK_IP_url : localhost:8070
+
+
+// to create the docker image command is : mvn compile jib:dockerBuild
+// to run the docket-compose file : docker compose up -d
