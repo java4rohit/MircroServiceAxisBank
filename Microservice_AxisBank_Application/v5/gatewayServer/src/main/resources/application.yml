@@ -7,8 +7,7 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: false
-          lowerCaseServiceId: true
+          enabled: true
 
 management:
   endpoints:
@@ -27,9 +26,3 @@ info:
     name: "gatewayserver"
     description: "Axis Bank Gateway Server Application"
     version: "1.0.0"
-
-logging:
-  level:
-    com:
-      eazybytes:
-        gatewayserver: DEBUG
