@@ -1,0 +1,66 @@
+#spring:
+#  application:
+#    name: accounts
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/microservices_udemy
+#    username: root
+#    password: root
+#  quartz:
+#    jdbc:
+#      initialize-schema: ALWAYS
+#  sql:
+#    init:
+#      mode: always
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  config:
+#    import:
+#      - "accounts.yml"
+#      - "accounts-dev.yml"
+#      - "accounts-qa.yml"
+#      - "accounts-prod.yml"
+#  profiles:
+#    active:
+#      - "dev"
+
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related local APIs "
+  contactDetails:
+    name: "John Doe - Developer"
+    email: "john@eazybank.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345
+
+#server:
+#  port: 8080
+
+# docker image setup with mysql
+#  spring.datasource.url=jdbc:mysql://mysql-container:3306/microservices_udemy
+#  spring.datasource.username=rootuser
+#  spring.datasource.password=root
+# Details for our datasource
+
+#server.port=8080
+#spring.datasource.url = jdbc:mysql://127.0.0.1:3306/microservices_udemy
+#spring.datasource.username=root
+
+#spring.datasource.password=root
+#spring.jpa.show-sql=true
+#spring.jpa.hibernate.ddl-auto = update
+#spring.jpa.properties.hibernate.dialect =  org.hibernate.dialect.MySQL57Dialect
+#spring.jpa.properties.hibernate.format_sql=true
+#spring.application.name= accounts
+#spring.sql.init.mode:always
+# logging.level.com.mypackage.myproject=WARN
+# logging.level.org.springframework=DEBUG
+# logging.level.root=INFO
+#  sql:
+#    init:
+#      mode: always  to run schema.sql

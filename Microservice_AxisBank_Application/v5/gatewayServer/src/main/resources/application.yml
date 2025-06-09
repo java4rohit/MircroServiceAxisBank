@@ -1,26 +1,14 @@
-server:
-  port: 8080
 spring:
   application:
-    name: "accounts"
-  profiles:
-    active: "prod"
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/microservices_udemy
-    username: root
-    password: root
-  quartz:
-    jdbc:
-      initialize-schema: ALWAYS
-  sql:
-    init:
-      mode: always
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    name: "gatewayserver"
   config:
     import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
 
 management:
   endpoints:
@@ -28,32 +16,20 @@ management:
       exposure:
         include: "*"
   endpoint:
-    shutdown:
-      enabled: true
+    gateway:
+      access: unrestricted
   info:
     env:
       enabled: true
-endpoints:
-  shutdown:
-    enabled: true
-
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
 
 info:
   app:
-    name: "accounts"
-    description: "Axis Bank Accounts Application"
+    name: "gatewayserver"
+    description: "Axis Bank Gateway Server Application"
     version: "1.0.0"
 
-#  rabbitmq:
-#    host: "localhost"
-#    port: 5672
-#    username: "guest"
-#    password: "guest"
+logging:
+  level:
+    com:
+      eazybytes:
+        gatewayserver: DEBUG

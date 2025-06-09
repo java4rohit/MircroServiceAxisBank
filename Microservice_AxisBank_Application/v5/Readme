@@ -1,0 +1,18 @@
+//EUREAK
+
+EUREAK_IP_url : localhost:8070
+
+
+// to create the docker image command is : mvn compile jib:dockerBuild
+// to run the docket-compose file (default directory path): docker compose up -d
+
+🧹 To stop and remove all containers:
+docker compose down
+
+✅ Step-by-step to stop and delete the container/image:
+1. 🛑 Stop the container (if running):
+docker stop loans-ms
+2. 🗑 Remove the container:
+docker rm loans-ms
+3. 🔥 Now delete the image:
+docker rmi dockerrohit12/loans:s8
